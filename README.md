@@ -13,8 +13,8 @@ existing numeric accession number; deleted numbers are never reused. The
 accession number is read-only during updates.
 
 Selecting **Add** suggests a unique Call No. from the configurable
-`CALL_NO_GENERATION_SERIES` in `database.py`. It rotates through stems observed
-in the fictional catalog (for example, `QA76.`, `QC174.`, `RA790.`, and
+`CALL_NO_GENERATION_SERIES` in `database.py`. It rotates through configured
+catalog stems (for example, `QA76.`, `QC174.`, `RA790.`, and
 `BF698.`) and advances the numeric suffix for the selected stem, yielding
 values such as `QA76.10`, `QC174.2`, and `RA790.6`. Existing saved values are
 skipped. These values only resemble the catalog's Library-of-Congress-style
@@ -43,8 +43,7 @@ the book available. Books with any borrowing history cannot be deleted.
 - `algorithms.py` — manual Linear Search and Insertion Sort.
 - `data_structures.py` — LIFO `OperationStack` and FIFO
   `BorrowRequestQueue`.
-- `seed_demo_data.py` — repeatable creator for a separate fictional demo
-  database.
+- `seed_demo_data.py` — repeatable setup for the demonstration catalog.
 - `tests/` — temporary-database `unittest` coverage.
 
 ## Running
@@ -55,54 +54,12 @@ Use Python 3.12 or later from the project root:
 python main.py
 ```
 
-The application uses `library_demo.db` by default. On first startup it creates
-and seeds that separate database with 20 fictional demonstration records.
-Existing legacy databases are migrated
-without resetting records: old `book_id` values become accession numbers,
-publication years become Copyright values, and old borrowing relationships are
-renamed to use `accession_no`. The normal application does not insert sample
-records into `library.db`.
-
-`library_demo.db` is stored beside the source files using a project-relative
-path, so startup does not depend on the current working directory. The
-original `library.db` remains separate and is never populated by automatic
-demo startup. A seed marker is stored in the demo database, so later launches
-preserve user changes and do not repopulate a demo database that was
-intentionally emptied.
-
-## Fictional demonstration database
-
-The project includes a small fictional dataset covering artificial
-intelligence, quantum computing, health psychology, communication, hair
-styling, audio engineering, machining and welding, data-intensive applications,
-sociology, survey design, urban design, electromagnetism, philosophy,
-mechanics, coding, 3D printing, correlation matrices, syntax, and phonics.
-These records are inspired by subject areas in the printed catalog, but they
-are not verified bibliographic records and are not an official catalog import.
-
-Create the separate demo database with:
-
-```text
-python seed_demo_data.py
-```
-
-This creates `library_demo.db`, assigns sequential Accession Numbers starting
-at 1, and inserts records as `Available`. Running the command again does not
-duplicate records. The normal application command already opens the demo database:
-
-```text
-python main.py
-```
-
-The seed script creates no borrowing records or Recent Activity entries. To
-reset only the demo database for a clean presentation, close the demo
-application first and run:
-
-```text
-python seed_demo_data.py --reset --confirm-reset
-```
-
-Never use the reset option with `library.db`.
+The application uses `library_demo.db` by default and creates it beside the
+source files on first startup. Existing legacy databases are migrated without
+resetting records: old `book_id` values become accession numbers, publication
+years become Copyright values, and old borrowing relationships are renamed to
+use `accession_no`. The application's default startup does not modify
+`library.db`.
 
 Run tests with:
 
