@@ -109,17 +109,6 @@ memory, so pending requests are lost when the application closes.
    Cancel to leave the request queued and the book available.
 9. Open **Recent Activity** to see successful operations newest-first.
 
-## Demonstration checklist
-
-Use temporary or instructor-approved data, not invented records in the final
-database. Demonstrate launch, adding and selecting a book, updating it,
-searching by all three search fields, title sorting, Recent Activity, borrowing,
-queueing multiple borrowers for the borrowed book, viewing the queue, returning
-the book, declining the first borrower and confirming the next available queued
-borrower receives it. Point to
-`algorithms.py` and `data_structures.py` when explaining the manual algorithms,
-Stack, and Queue.
-
 ## Limitations
 
 Recent Activity and queued requests are in-memory and disappear when the
