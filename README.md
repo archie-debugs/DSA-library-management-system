@@ -46,29 +46,6 @@ the book available. Books with any borrowing history cannot be deleted.
 - `seed_demo_data.py` — repeatable setup for the demonstration catalog.
 - `tests/` — temporary-database `unittest` coverage.
 
-## Running
-
-Use Python 3.12 or later from the project root:
-
-```text
-python main.py
-```
-
-The application uses `library_demo.db` by default and creates it beside the
-source files on first startup. Existing legacy databases are migrated without
-resetting records: old `book_id` values become accession numbers, publication
-years become Copyright values, and old borrowing relationships are renamed to
-use `accession_no`. The application's default startup does not modify
-`library.db`.
-
-Run tests with:
-
-```text
-python -m unittest discover -s tests -v
-```
-
-Tests use temporary SQLite files and never populate the real database.
-
 ## Algorithms and data structures
 
 Linear Search is a manual loop. Accession No. uses exact matching, while
